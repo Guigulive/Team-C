@@ -43,7 +43,7 @@ contract Payroll {
     }
   }
 
-  function setSalary(address adr) {
+  function setAddress(address adr) {
     if(msg.sender == employee){
        employee = adr;
     }else{
