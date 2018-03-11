@@ -47,21 +47,28 @@ contract Payroll {
         return calculateRunway() > 0;
     }
     
-    function timesToBePaid() public constant returns (uint) {
-        return (now - lastPayday) / payDuration;
-    }
-    
-    function totalToBePaid() public constant returns (uint) {
-        return salary * timesToBePaid();
-    }
-    
-    function getPaidForOnce() public employeeOnly returns (uint) {
+    /* The employee calls this method to get his payment *FOR ONCE*. This method
+    * can be called multiple times if timesToBePaid() > 0.
+    *
+    */
+    function getPaid() public employeeOnly returns (uint) {
         uint nextPayday = lastPayday + payDuration;
         assert(nextPayday < now);
 
         lastPayday = nextPayday;
         employee.transfer(salary);
         return employee.balance;
+    }
+    
+    // =========================================================================
+    // Convenient public methods for debugging purpose.
+    // =========================================================================
+    function timesToBePaid() public constant returns (uint) {
+        return (now - lastPayday) / payDuration;
+    }
+    
+    function totalToBePaid() public constant returns (uint) {
+        return salary * timesToBePaid();
     }
     
     function getRemainingBalance() public constant returns (uint) {
