@@ -33,6 +33,7 @@ contract Payroll {
 
     function updateEmployeeSalary(uint newSalary) public {
         require(msg.sender == owner);
+        require(newSalary > 0);
         newSalary = newSalary * 1 ether;
         require(newSalary != salary);
 
