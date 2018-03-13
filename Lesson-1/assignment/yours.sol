@@ -4,16 +4,23 @@ contract Payroll {
     address staff = 0x0;
     uint constant payDuration = 30 days;
     uint lastPayday = now;
+    address owner;
+    
+    function Payroll(){
+        owner = msg.sender;
+    }
     
     function addFun() payable returns (uint){
         return this.balance;
     }
     
     function hasEnoughFund() returns (bool){
+        require(salary != 0);
         return this.balance  / salary > 0;
     }
     
     function setStaffAddress(address staffAddress){
+        require(msg.sender == owner);
         require(salary != 0);
         
         staff = staffAddress;
@@ -30,6 +37,7 @@ contract Payroll {
     }
     
     function setStaffPayroll(uint staffPayroll){
+        require(msg.sender == owner);
         uint ss = staffPayroll * 1 ether;
         require(ss != 0);
         
@@ -37,7 +45,7 @@ contract Payroll {
     }
     
     function getPaid() {
-        require(staff != 0x0);
+        require(staff == msg.sender);
         require(hasEnoughFund());
         
         uint nextPayDay = lastPayday - payDuration;
