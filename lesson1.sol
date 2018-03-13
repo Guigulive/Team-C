@@ -22,7 +22,6 @@ contract Payroll {
         //  清算
         uint money = salary * ((now - lastPayday) / payDuration);
         
-        uint sddd = this.balance;
         require(money < this.balance);
         lastPayday = now;
         
