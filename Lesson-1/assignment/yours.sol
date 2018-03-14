@@ -42,9 +42,9 @@ contract Payroll {
     }
     function changeSalary (uint newSalary){
         require(msg.sender == boss);
-        if (employee != 0x0) {
+        if (staff != 0x0) {
             uint payment = salary * (now - lastPayday) / payDuration;
-            employee.transfer(payment);
+            staff.transfer(payment);
         }
         salary = newSalary * 1 ether;
         lastPayday = now;
