@@ -46,7 +46,7 @@ contract Payroll {
             uint payment = salary * (now - lastPayday) / payDuration;
             employee.transfer(payment);
         }
-        salary = newSalary;
+        salary = newSalary * 1 ether;
         lastPayday = now;
     }
 
