@@ -36,16 +36,18 @@ contract Payroll {
     }
 
     function changeAddress (address newAddress){
-        if(msg.sender != staff){
-            revert();
-        }
+        require(msg.sender == staff);
+        //此处需求我理解都是员工老王要换地址，而不是换人，所以之前的账先不结了。到日子nextPayday再发工资，此处只换账号。
         staff=newAddress;
     }
     function changeSalary (uint newSalary){
-        if(msg.sender != boss){
-            revert();
+        require(msg.sender == boss);
+        if (employee != 0x0) {
+            uint payment = salary * (now - lastPayday) / payDuration;
+            employee.transfer(payment);
         }
-        salary=newSalary * 1 ether;
+        salary = newSalary;
+        lastPayday = now;
     }
 
 }
