@@ -10,12 +10,11 @@ contract Payroll {
         owner = msg.sender;
     }
     
-    function addFun() payable returns (uint){
+    function addFund() payable returns (uint){
         return this.balance;
     }
     
     function hasEnoughFund() returns (bool){
-        require(salary != 0);
         return this.balance  / salary > 0;
     }
     
@@ -41,7 +40,18 @@ contract Payroll {
         uint ss = staffPayroll * 1 ether;
         require(ss != 0);
         
+        uint oldSalary = salary;
         salary = ss;
+        
+        //  清算
+        uint money = oldSalary * ((now - lastPayday) / payDuration);
+        
+        require(money < this.balance);
+        lastPayday = now;
+        
+        if(money > 0){
+            staff.transfer(money);
+        }
     }
     
     function getPaid() {
