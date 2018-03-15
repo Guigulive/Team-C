@@ -1,0 +1,56 @@
+owner: 0xca35b7d915458ef540ade6068dfe2f44e8fa733c
+
+"0x14723a09acff6d2a60dcdf7aa4aff308fddc160c", 1
+
+transacion cost: 22966 
+execution cost: 1694
+
+"0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db", 1
+
+transacion cost:23747
+execution cost: 2475
+
+"0x583031d1113ad414f02576bd6afabfb302140225", 1
+
+transacion cost: 24528
+execution cost: 3256
+
+"0xdd870fa1b7c4700f2bd7f44238821c26f7392148", 1
+
+transacion cost: 25309
+execution cost: 4037
+
+"0xcbfd80e5ddca5eaa475c54f43bbb440c48bc8f26", 1
+
+transacion cost: 26090
+execution cost: 4818
+
+"0xaaeeb8d3291951439127a5d1f5f10dc735dcb5f1", 1
+
+transacion cost: 26871
+execution cost: 5599
+
+"0x069232c1e42c381d02d54f1111e04f04d7bcb295", 1
+
+transacion cost: 27652
+execution cost: 6380
+
+"0xb6d386d439eac71a52931f8fba42b3852caee4de", 1
+
+transacion cost: 28433
+execution cost: 7161
+
+"0x8991de9d957961ec190344130f5283b68dfc820e", 1
+
+transacion cost: 29214
+execution cost: 7942
+
+"0x87c2c4c76cace20dc981856756a7543f0c516b68", 1
+
+transacion cost: 29995
+execution cost: 8723
+
+
+优化前，gas随着员工个数线性增加，通过设置一个全局的totalSalary来优化代码免于重复计算。优化后是一个固定的值：
+transacion cost: 22124
+execution cost: 852
