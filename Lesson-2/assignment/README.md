@@ -33,5 +33,4 @@
 
 #### 优化
 
-方案 1: 空间换时间。加入 `totalSalary` 做缓存，第二次调用可节约 gas
-方案 2: 提前计算。员工数变化，balance 变化后，计算 `totalSalary` ，`calculateRunway()` 中直接使用 `totalSalary` 做计算。
+空间换时间换时间，引入 `totalSalary`，更新 `employees` 之后，同时更新 `totalSalary`。 `calculateRunway()` 时直接使用 `totalSalary` 进行计算。
