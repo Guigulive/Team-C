@@ -26,5 +26,6 @@ transaction cost和execution cost都是每次增加781
 所以大约可以算出 this.balance / totalSalary 的cost约为913， 而每次加法的cost约为781.
 
 - 如何优化calculateRunway这个函数来减少gas的消耗？
+就是把for循环去掉，每次更新employee时顺带更新totalSalary
 提交：智能合约代码，gas变化的记录，calculateRunway函数的优化
 
