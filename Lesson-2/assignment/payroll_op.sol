@@ -9,7 +9,7 @@ contract Payroll {
     uint constant payDuration = 10 seconds;
     address owner;
     Employee[] employees;
-    uint private totalSalary=0;
+    uint  totalSalary=0;
     function Payroll() {
         owner = msg.sender;
     }
@@ -50,12 +50,13 @@ contract Payroll {
 
     }
 
-    function updateEmployee(address employeeId, uint salary) {
+    function updateEmployee(address employeeId, uint newSalary) {
         require(msg.sender == owner);
         var (employee , index) = _findEmployee(employeeId);
         assert(employee.id == 0x0);
         _partialPaid(employee);
         employees[index].lastPayday=now;
+        uint oldSalary=employees[index].salary;
         newSalary= newSalary * 1 ether;
         employees[index].salary=newSalary;
         totalSalary=totalSalary+newSalary-oldSalary;
