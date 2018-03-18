@@ -1,4 +1,7 @@
-// 改进前代码
+// 改进后代码
+// 把calculateRunway种的totalSalary变为全局storage变量
+// 并在addEmployee，removeEmpolyee和updateEmployee中相应地更新totalSalary
+// 从而避免重复循环浪费gas
 
 pragma solidity ^0.4.14;
 
@@ -19,6 +22,8 @@ contract Payroll {
 
     address owner;
     Employee[] employees;
+    
+    uint totalSalary = 0;
 
     function Payroll() {
         owner = msg.sender;
@@ -47,6 +52,7 @@ contract Payroll {
         
         var (employee, index) = _findEmployee(_employeeId);
         require(employee.id == 0x0);
+        totalSalary += _salary;
         employees.push(Employee(_employeeId, _salary, now));
 
     }
@@ -57,6 +63,8 @@ contract Payroll {
         require(employee.id != 0x0);
         
         _partialPaid(employee);
+        
+        totalSalary -= employee.salary;
         
         delete employees[index];
         employees[index] = employees[employees.length-1];
@@ -71,6 +79,8 @@ contract Payroll {
         
         _partialPaid(employee);
         
+        totalSalary = totalSalary - employee.salary + _salary;
+        
         employees[index].lastPayday = now;
         employees[index].id = _employeeId;
         employees[index].salary = _salary;
@@ -82,10 +92,6 @@ contract Payroll {
     }
     
     function calculateRunway() returns (uint) {
-        uint totalSalary = 0;
-        for (uint i = 0; i < employees.length; i++) {
-            totalSalary += employees[i].salary;
-        }
         return this.balance / totalSalary;
     }
     
