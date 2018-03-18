@@ -39,7 +39,7 @@ contract Payroll {
     function removeEmployee(address employeeId) {
         require(msg.sender == owner);
         var (employee , index) = _findEmployee(employeeId);
-        assert(employee.id == 0x0);
+        assert(employee.id != 0x0);
         _partialPaid(employee);
         delete employees[index];
         employees[index]=employees[employees.length - 1];
@@ -51,7 +51,7 @@ contract Payroll {
     function updateEmployee(address employeeId, uint salary) {
         require(msg.sender == owner);
         var (employee , index) = _findEmployee(employeeId);
-        assert(employee.id == 0x0);
+        assert(employee.id != 0x0);
         _partialPaid(employee);
         employees[index].lastPayday=now;
         employees[index].salary=salary;
@@ -76,11 +76,11 @@ contract Payroll {
 
     function getPaid() {
         var (employee , index) = _findEmployee(msg.sender);
-        assert(employee.id == 0x0);
+        assert(employee.id != 0x0);
         uint nextPayday= employee.lastPayday + payDuration;
         assert(nextPayday < now);
-        employee.lastPayday = nextPayday;
-        employee.id.transfer(employee.salary);
+        employees[index].lastPayday = nextPayday;
+        employees[index].id.transfer(employee.salary);
     }
 }
 
