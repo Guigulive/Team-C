@@ -7,15 +7,15 @@ contract Payroll is Ownable {
     
     using SafeMath for uint;
     
+    // address is not needed because it is already the key
     struct EmployeeInfo {
         uint salary;
         uint lastPayday;
     }
     
-    uint constant payDuration = 10 seconds;
-
     mapping (address=>EmployeeInfo) public employees;
     
+    uint constant payDuration = 10 seconds;
     uint totalSalary = 0;
     
     modifier employeeExists(address _address) {
@@ -30,12 +30,12 @@ contract Payroll is Ownable {
         
     }
 
-    function addEmployee(address _employeeId, uint _salary) onlyOwner {
+    function addEmployee(address _employeeId, uint _salary) external onlyOwner {
         
         var _employee = employees[_employeeId];
-        require(_employee.lastPayday == 0);
-        totalSalary += _salary;
-        employees[_employeeId] = EmployeeInfo(_salary, now);
+        require(_employee.lastPayday == 0); // employee not exists
+        totalSalary += _salary * 1 ether;
+        employees[_employeeId] = EmployeeInfo(_salary * 1 ether, now);
 
     }
     
@@ -51,26 +51,30 @@ contract Payroll is Ownable {
         
     }
     
+    /// @dev change the salary of an employee
     function updateEmployee(address _employeeId, uint _salary) onlyOwner employeeExists(_employeeId){
         
         var _employee = employees[_employeeId];
         
         _partialPaid(_employeeId);
         
-        totalSalary = totalSalary.sub(_employee.salary).add(_salary);
+        totalSalary = totalSalary.sub(_employee.salary).add(_salary * 1 ether);
         
-        _employee.salary = _salary;
+        _employee.salary = _salary * 1 ether;
         _employee.lastPayday = now;
         
     }
     
+    /// @dev change the address of an employee
     function changePaymentAddress(address _oldAddress, address _newAddress) onlyOwner employeeExists(_oldAddress) {
-        var _employee = employees[_oldAddress];
         
+        require(employees[_newAddress].lastPayday == 0); // the newAddress should not already be an employee
+        
+        var _employee = employees[_oldAddress];
         _partialPaid(_oldAddress);
         
         employees[_newAddress] = EmployeeInfo(_employee.salary, now);
-        delete _employee;
+        delete employees[_oldAddress];
         
     }
     
