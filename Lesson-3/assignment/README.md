@@ -5,27 +5,27 @@
 在课程基础上做了小改进（因为哈希表的key已经是员工的address了，所以value里不需要再存address了）  
 感觉除了判断雇主以及判断员工是否存在以外，已经没有可以用modifier实现的内容了
 1. addfund 打入50eth
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/1.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/1.png)
 2. addEmployee增加一个雇员，工资1eth
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/2.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/2.png)
 3. 查看雇员信息
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/3.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/3.png)
 4. 再增加一个雇员，工资1eth
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/4.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/4.png)
 5. 重复添加已有的雇员会失败
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/5.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/5.png)
 6. calculateRunway
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/6.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/6.png)
 7. hasEnoughFund
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/7.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/7.png)
 8. 员工1调用getPaid得到了1eth
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/8.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/8.png)
 9. 调用updateEmployee把员工1的工资变为2eth，并确认改变
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/9.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/9.png)
 10 .调用chagePaymentAddress可以看到员工信息已经转移到新的地址
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/10.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/10.png)
 11. 调用removeEmployee，可以看到员工已被移除
-![image] https://github.com/Satoshi-Kusumoto/Team-C/blob/master/Lesson-3/assignment/figures/11.png
+![image](https://github.com/Satoshi-Kusumoto/Team-C/raw/master/Lesson-3/assignment/figures/11.png)
 
 
 ### 第三题（加分题）：自学C3 Linearization, 求以下 contract Z 的继承线
