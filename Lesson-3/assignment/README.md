@@ -12,3 +12,5 @@
 - contract K1 is A, B
 - contract K2 is A, C
 - contract Z is K1, K2
+
+L(Z) = Z-K2-C-A-K1-B-O
