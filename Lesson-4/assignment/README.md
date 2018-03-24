@@ -17,7 +17,7 @@
 1. `addEmployee()` 的测试用例为： `payroll-test-add-employee.js`
 2. `removeEmployee()` 的测试用例为： `payroll-test-remove-employee.js`
 3. `getPaid()` 的测试用例为： `payroll-test-get-paid.js`
-4. 通过 `evm_increaseTime`，可修改 evm 时间。
+4. 调用 `evm_increaseTime`，可修改 evm 时间。
 
 测试结果如下:
 
