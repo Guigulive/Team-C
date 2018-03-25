@@ -27,7 +27,7 @@ contract Payroll {
     _;
   }
   
-  uint constant payDuration = 10 seconds;
+  uint constant payDuration = 30 days;
 
   address public owner;
   mapping(address => Employee) public employees;
