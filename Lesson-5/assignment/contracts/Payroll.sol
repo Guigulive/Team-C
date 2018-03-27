@@ -78,7 +78,7 @@ contract Payroll is Ownable {
         return calculateRunway() > 0;
     }
 
-    function getPaid() hasNoEmployee(msg.sender) {
+    function getPaid() hasEmployee(msg.sender) {
         var employee = employees[msg.sender];
 
         uint nextPayday = employee.lastPayday.add(payDuration);
