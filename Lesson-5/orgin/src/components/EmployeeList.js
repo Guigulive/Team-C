@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Table, Button, Modal, Form, InputNumber, Input, message, Popconfirm } from 'antd';
 
 import EditableCell from './EditableCell';
@@ -36,8 +36,7 @@ class EmployeeList extends Component {
     columns[1].render = (text, record) => (
       <EditableCell
         value={text}
-        onChange={ this.updateEmployee.bind(this, record.address) }
-      />
+        onChange={ this.updateEmployee.bind(this, record.address) } />
     );
 
     columns[3].render = (text, record) => (
@@ -65,15 +64,90 @@ class EmployeeList extends Component {
   }
 
   loadEmployees(employeeCount) {
+    const { account, payroll, web3 } = this.props;
+    const request = [];
+
+    for (var i = 0; i < employeeCount; i++) {
+      request.push(payroll.checkEmployee.call(i, {from: account, gas: 310000}));
+    }
+
+    Promise.all(request)
+    .then((values) =>{
+      const employees = values.map(value => ({
+        key: value[0],
+        address: value[0],
+        salary: web3.fromWei(value[1].toNumber()),
+        lastPaidDay: new Date(value[2].toNumber() * 1000).toString()
+      }));
+
+      this.setState({
+         employees,
+         loading: false
+      })
+    });
+
+
   }
 
   addEmployee = () => {
+    const { account, payroll } = this.props;
+    payroll.addEmployee(this.state.address, this.state.salary, {
+      from: account,
+      gas: 310000
+    }).then(() =>{
+      const newEmployee = {
+        key: this.state.address,
+        address: this.state.address,
+        salary: this.state.salary,
+        lastPaidDay: new Date().toString()
+      };
+
+      this.setState({
+        address: '',
+        salary: '',
+        employees: this.state.employees.concat([newEmployee]),
+        showModal: false
+      });
+
+    });
   }
 
   updateEmployee = (address, salary) => {
+    const { account, payroll } = this.props;
+    const { employees } = this.state;
+
+    payroll.updateEmployee(address, salary, {
+      from: account,
+      gas: 310000
+    }).then(() =>{
+      this.setState({
+        employees: employees.map((employee) => {
+          if(employee.address === this.state.address){
+            employee.salary = salary;
+          }
+
+          return employee;
+        }),
+        showModal: false
+      });
+    }).catch(err =>{
+      message.error('你没有足够的余额');
+    });
   }
 
   removeEmployee = (employeeId) => {
+    const { account, payroll } = this.props;
+    payroll.removeEmployee(employeeId, {
+      from: account,
+      gas: 310000
+    }).then(() =>{
+      this.setState({
+        employees: this.state.employees.filter(employee => employee.address !== employeeId),
+        showModal: false
+      });
+    }).catch(() =>{
+      message.error('你没有足够的余额');
+    });
   }
 
   renderModal() {

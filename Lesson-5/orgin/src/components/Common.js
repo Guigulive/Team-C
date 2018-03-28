@@ -16,28 +16,31 @@ class Common extends Component {
       }
     }
 
-    this.newFund = payroll.NewFund(updateInfo);
-    this.getPaid = payroll.GetPaid(updateInfo);
-    this.newEmployee = payroll.NewEmployee(updateInfo);
-    this.updateEmployee = payroll.UpdateEmployee(updateInfo);
-    this.removeEmployee = payroll.RemoveEmployee(updateInfo);
+    this.addFund = payroll.addFund(updateInfo);
+    this.getPaid = payroll.getPaid(updateInfo);
+    this.newEmployee = payroll.addEmployee(updateInfo);
+    this.updateEmployee = payroll.updateEmployee(updateInfo);
+    this.removeEmployee = payroll.removeEmployee(updateInfo);
 
     this.checkInfo();
   }
 
   componentWillUnmount() {
-    this.newFund.stopWatching();
-    this.getPaid.stopWatching();
-    this.newEmployee.stopWatching();
-    this.updateEmployee.stopWatching();
-    this.removeEmployee.stopWatching();
+    // this.addFund.stopWatching();
+    // this.getPaid.stopWatching();
+    // this.newEmployee.stopWatching();
+    // this.updateEmployee.stopWatching();
+    // this.removeEmployee.stopWatching();
   }
 
   checkInfo = () => {
+
     const { payroll, account, web3 } = this.props;
     payroll.checkInfo.call({
       from: account,
+      gas:310000
     }).then((result) => {
+
       this.setState({
         balance: web3.fromWei(result[0].toNumber()),
         runway: result[1].toNumber(),

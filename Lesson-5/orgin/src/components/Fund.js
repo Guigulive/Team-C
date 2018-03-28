@@ -14,10 +14,17 @@ class Fund extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault();
+    const subCommon = this.subCommon;
     const { payroll, account, web3 } = this.props;
     payroll.addFund({
       from: account,
-      value: web3.toWei(this.state.fund)
+      value: web3.toWei(this.state.fund),
+      gas:310000
+    }).then(result => {
+      
+      var accountInterval = setInterval(function() {
+        subCommon.checkInfo();
+      }, 1000);
     });
   }
 
@@ -25,7 +32,7 @@ class Fund extends Component {
     const { account, payroll, web3 } = this.props;
     return (
       <div>
-        <Common account={account} payroll={payroll} web3={web3} />
+        <Common account={account} payroll={payroll} web3={web3} ref={(sub)=>{this.subCommon = sub;}} />
 
         <Form layout="inline" onSubmit={this.handleSubmit}>
           <FormItem>

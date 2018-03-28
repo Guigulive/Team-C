@@ -61,12 +61,15 @@ class App extends Component {
       this.setState({
         account: accounts[0],
       });
+
       Payroll.deployed().then((instance) => {
         PayrollInstance = instance
+
         this.setState({
           payroll: instance
         });
-      })
+      });
+
     })
   }
 
