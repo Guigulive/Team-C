@@ -14,6 +14,47 @@ class Employer extends Component {
       mode: 'fund'
     };
   }
+   addFund = () => {
+      const {payroll,employer,web3} = this.pros;
+      payroll.addFund({
+        from:employer,
+        value:web3.toWei(this.fundInput.value)
+      });
+   }
+
+   addEmployee = () => {
+    const {payroll,employer,web3} = this.pros;
+    payroll.addEmployee(this.employeeInput.value,parseInt(this.salaryInput.value),{
+      from:employer,
+      gas:1000000//指定最多可以消耗多少gas
+    }).then((result) => {
+      alert("success");
+    });
+   }
+
+   updateEmployee = () => {
+    const {payroll,employer,web3} = this.pros;
+    payroll.updateEmployee(this.employeeInput.value,parseInt(this.salaryInput.value),{
+      from:employer,
+      gas:1000000//指定最多可以消耗多少gas
+    }).then((result) => {
+      alert("success");
+    });
+   }
+
+
+   removeEmployee = () => {
+    const {payroll,employer,web3} = this.pros;
+    payroll.removeEmployee(this.removeEmployeeInput.value,{
+      from:employer,
+      gas:1000000//指定最多可以消耗多少gas
+    }).then((result) => {
+      alert("success");
+    });
+   }
+
+
+
 
   componentDidMount() {
     const { account, payroll } = this.props;
@@ -40,12 +81,12 @@ class Employer extends Component {
       return <Alert message="你没有权限" type="error" showIcon />;
     }
 
-    switch(mode) {
-      case 'fund':
-        return <Fund account={account} payroll={payroll} web3={web3} />
-      case 'employees':
-        return <EmployeeList account={account} payroll={payroll} web3={web3} />
-    }
+    // switch(mode) {
+    //   case 'fund':
+    //     return <Fund account={account} payroll={payroll} web3={web3} />
+    //   case 'employees':
+    //     return <EmployeeList account={account} payroll={payroll} web3={web3} />
+    // }
   }
 
   render() {
