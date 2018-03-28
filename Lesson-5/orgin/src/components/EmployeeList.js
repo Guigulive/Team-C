@@ -41,7 +41,8 @@ class EmployeeList extends Component {
     );
 
     columns[3].render = (text, record) => (
-      <Popconfirm title="你确定删除吗?" onConfirm={() => this.removeEmployee(record.address)}>
+      <Popconfirm title="你确定删除吗?" onConfirm={
+        () => this.removeEmployee(record.address)}>
         <a href="#">Delete</a>
       </Popconfirm>
     );
@@ -65,15 +66,81 @@ class EmployeeList extends Component {
   }
 
   loadEmployees(employeeCount) {
+    const { payroll, account, web3 } = this.props;
+    var requests = [];
+
+    for (var i = 0; i < employeeCount; i++) {
+      requests.push(payroll.checkEmployee.call(i), {from: account});
+    }
+
+    Promise.all(requests)
+    .then(values => {
+      const employees = values.filter(value => Array.isArray(value))
+      .map(value => ({
+        key: value[0],
+        address: value[0],
+        salary: web3.fromWei(value[1].toNumber()),
+        lastPaidDay: Date(value[2].toNumber() * 1000),
+        action: '删除',
+      }));
+
+      this.setState({
+        employees,
+        loading: false,
+      });
+    });  
   }
 
   addEmployee = () => {
+    const { payroll, account, web3 } = this.props;
+    payroll.addEmployee(this.state.address, this.state.salary, {
+      from: account,
+      gas: 5000000,
+    })
+    .then(() => {alert('add employee succssful! Refresh to see change')})
+    .catch((err) => {
+      console.log('failed!\n' + err);
+    });
   }
 
   updateEmployee = (address, salary) => {
+    const { payroll, account, web3 } = this.props;
+    payroll.updateEmployee(address, salary, {
+      from: account,
+      gas: 5000000,
+    })
+    .then(() => {
+      let nextEmployees = this.state.employees;
+      for (let i = 0; i < nextEmployees.length; i++) {
+        if (nextEmployees[i].address === address) {
+          nextEmployees[i].salary = salary;
+        }
+      }
+      this.setState({employees: nextEmployees});
+    })
+    .catch((err) => {
+      console.log('fail to update, err: ' + err);
+    });
   }
 
   removeEmployee = (employeeId) => {
+    const { payroll, account, web3 } = this.props;
+    payroll.removeEmployee(employeeId, {
+      from: account,
+      gas: 5000000,
+    })
+    .then(() => {
+      let nextEmployees = this.state.employees;
+      for (let i = 0; i < nextEmployees.length; i++) {
+        if (nextEmployees[i].address === employeeId) {
+          nextEmployees.splice(i, 1);
+        }
+      }
+      this.setState({employees: nextEmployees});
+    })
+    .catch((err) => {
+      console.log('fail to delete, err: ' + err);
+    });
   }
 
   renderModal() {
@@ -104,7 +171,6 @@ class EmployeeList extends Component {
   }
 
   render() {
-    const { loading, employees } = this.state;
     return (
       <div>
         <Button
@@ -117,8 +183,8 @@ class EmployeeList extends Component {
         {this.renderModal()}
 
         <Table
-          loading={loading}
-          dataSource={employees}
+          loading={this.state.loading}
+          dataSource={this.state.employees}
           columns={columns}
         />
       </div>
