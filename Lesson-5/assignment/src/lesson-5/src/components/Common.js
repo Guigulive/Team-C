@@ -16,21 +16,21 @@ class Common extends Component {
       }
     }
 
-    // this.addFund = payroll.addFund(updateInfo);
-    // this.getPaid = payroll.getPaid(updateInfo);
-    // this.addEmployee = payroll.addEmployee(updateInfo);
-    // this.updateEmployee = payroll.updateEmployee(updateInfo);
-    // this.removeEmployee = payroll.removeEmployee(updateInfo);
+    this.addFund = payroll.AddFund(updateInfo);
+    this.getPaid = payroll.GetPaid(updateInfo);
+    this.addEmployee = payroll.AddEmployee(updateInfo);
+    this.updateEmployee = payroll.UpdateEmployee(updateInfo);
+    this.removeEmployee = payroll.RemoveEmployee(updateInfo);
 
     this.getEmployerInfo();
   }
 
   componentWillUnmount() {
-    // this.addFund.stopWatching();
-    // this.getPaid.stopWatching();
-    // this.addEmployee.stopWatching();
-    // this.updateEmployee.stopWatching();
-    // this.removeEmployee.stopWatching();
+    this.addFund.stopWatching();
+    this.getPaid.stopWatching();
+    this.addEmployee.stopWatching();
+    this.updateEmployee.stopWatching();
+    this.removeEmployee.stopWatching();
   }
 
   getEmployerInfo = () => {
