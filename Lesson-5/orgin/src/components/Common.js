@@ -16,23 +16,21 @@ class Common extends Component {
       }
     }
 
-    // I bet thoes are events which we're not ready to use yet.
-    // this.newFund = payroll.NewFund(updateInfo);
-    // this.getPaid = payroll.GetPaid(updateInfo);
-    // this.newEmployee = payroll.NewEmployee(updateInfo);
-    // this.updateEmployee = payroll.UpdateEmployee(updateInfo);
-    // this.removeEmployee = payroll.RemoveEmployee(updateInfo);
+    this.newFund = payroll.NewFund(updateInfo);
+    this.getPaid = payroll.GetPaid(updateInfo);
+    this.newEmployee = payroll.NewEmployee(updateInfo);
+    this.updateEmployee = payroll.UpdateEmployee(updateInfo);
+    this.removeEmployee = payroll.RemoveEmployee(updateInfo);
 
     this.checkInfo();
   }
 
   componentWillUnmount() {
-    // I bet thoes are events which we're not ready to use yet.
-    // this.newFund.stopWatching();
-    // this.getPaid.stopWatching();
-    // this.newEmployee.stopWatching();
-    // this.updateEmployee.stopWatching();
-    // this.removeEmployee.stopWatching();
+    this.newFund.stopWatching();
+    this.getPaid.stopWatching();
+    this.newEmployee.stopWatching();
+    this.updateEmployee.stopWatching();
+    this.removeEmployee.stopWatching();
   }
 
   checkInfo = () => {

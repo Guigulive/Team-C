@@ -11,7 +11,7 @@ contract Payroll is Ownable {
         uint lastPayday;
     }
     
-    uint constant payDuration = 60 seconds;
+    uint constant payDuration = 10 seconds;
 
     uint totalSalary;
     uint totalEmployee;

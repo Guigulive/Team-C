@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PayrollContract from '../build/contracts/Payroll.json'
 import getWeb3 from './utils/getWeb3'
 
-import { Layout, Menu, Spin, Alert, Switch, Row, Col } from 'antd';
+import { Layout, Menu, Spin, Alert } from 'antd';
 
 import Employer from './components/Employer';
 import Employee from './components/Employee';
@@ -60,7 +60,6 @@ class App extends Component {
     this.state.web3.eth.getAccounts((error, accounts) => {
       this.setState({
         account: accounts[0],
-        accounts: accounts,
       });
       Payroll.deployed().then((instance) => {
         PayrollInstance = instance
@@ -75,14 +74,6 @@ class App extends Component {
     this.setState({
       mode: key
     });
-  }
-
-  onChangeAccount = (checked) => {
-    if (checked) {
-      this.setState({account: this.state.accounts[0]});
-    } else {
-      this.setState({account: this.state.accounts[1]});
-    }
   }
 
   renderContent = () => {
@@ -106,7 +97,7 @@ class App extends Component {
     return (
       <Layout>
         <Header className="header">
-          <div className="logo">IvanX的员工系统</div>
+          <div className="logo">老董区块链干货铺员工系统</div>
           <Menu
             theme="dark"
             mode="horizontal"
@@ -117,15 +108,6 @@ class App extends Component {
             <Menu.Item key="employer">雇主</Menu.Item>
             <Menu.Item key="employee">雇员</Menu.Item>
           </Menu>
-          <Row type="flex" justify="end">
-            <Col>
-              <Switch
-                checkedChildren="我是雇主"
-                unCheckedChildren="我是雇员"
-                defaultChecked={true}
-                onChange={this.onChangeAccount}/>
-            </Col>
-          </Row>
         </Header>
         <Content style={{ padding: '0 50px' }}>
           <Layout style={{ padding: '24px 0', background: '#fff', minHeight: '600px' }}>
@@ -133,7 +115,7 @@ class App extends Component {
           </Layout>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Payroll ©2018 IvanX的胡思乱想
+          Payroll ©2017 老董区块链干货铺
         </Footer>
       </Layout>
     );
