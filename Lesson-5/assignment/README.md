@@ -96,3 +96,16 @@ function removeEmployee(address employeeId) public onlyOwner shouldExist(employe
     RemoveEmployee(msg.sender, employeeId);
 }
 ```
+
+## 运行
+
+安装 docker 之后，本项目可直接运行，查验结果
+
+1. `sh manager.sh run`
+2. `sh manager.sh attach` 进入到容器，运行 `ganache-cli`
+3. 新开一个终端，进入到本项目目录 `sh manager.sh attach`，进入到容器：
+
+   ```
+   cd lesson-5
+   truffle complie && truffle migrate --reset && npm run start
+   ```
