@@ -1,13 +1,3 @@
-# payroll
-
-A payroll system developed with React and Solidty for Ethereum Blockchain platform. 
-
-## Get Started
-
-1. Install dependencies `npm install -g truffle ethereumjs-testrpc`
-1. Install [Metamask](https://metamask.io/)
-1. Run `testrpc`
-1. Add first account in testrpc to Metamask by importing private key
-1. Run `truffle compile` in the project directory
-1. `truffle migrate`
-1. `npm run start`
+## 第六课作业
+基本和上课视频中的内容没什么区别（因此和第五课作业也没什么区别）  
+唯一的改进就是在Employee.js中加入了监听器，使得雇员getPaid之后，自己的余额等信息也可以自动刷新
