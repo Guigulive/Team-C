@@ -19,7 +19,7 @@ class Employer extends Component {
 
     this.getPaidWatching = payroll.GetPaid(updateInfo);
 
-    this.checkEmployee(updateInfo);
+    this.checkEmployee();
   }
 
 
