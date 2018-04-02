@@ -64,6 +64,7 @@ contract Payroll is Ownable {
         totalSalary = totalSalary.add(employees[employeeId].salary);
         totalEmployee = totalEmployee.add(1);
         employeeList.push(employeeId);
+        NewEmployee(employeeId);
     }
 
     function removeEmployee(address employeeId) onlyOwner hasEmployee(employeeId) {
@@ -73,6 +74,7 @@ contract Payroll is Ownable {
         totalSalary = totalSalary.sub(employee.salary);
         delete employees[employeeId];
         totalEmployee = totalEmployee.sub(1);
+        RemoveEmployee(employeeId);
     }
 
     function updateEmployee(address employeeId, uint salary) onlyOwner hasEmployee(employeeId) {
@@ -86,6 +88,7 @@ contract Payroll is Ownable {
     }
 
     function addFund() payable returns (uint) {
+        NewFund(this.balance);
         return this.balance;
     }
 
@@ -105,6 +108,7 @@ contract Payroll is Ownable {
 
         employee.lastPayday = nextPayday;
         employee.id.transfer(employee.salary);
+        GetPaid(msg.sender);
     }
 
     function checkEmployee(uint index) returns (address employeeId, uint salary, uint lastPayday) {

@@ -15,8 +15,8 @@ const columns = [{
   key: 'salary',
 }, {
   title: '上次支付',
-  dataIndex: 'lastPaidDay',
-  key: 'lastPaidDay',
+  dataIndex: 'lastPayday',
+  key: 'lastPayday',
 }, {
   title: '操作',
   dataIndex: '',
@@ -78,7 +78,7 @@ class EmployeeList extends Component {
           key:value[0],
           address:value[0],
           salary:web3.fromWei(value[1].toNumber()),
-          lastPaidDay: new Date(value[2].toNumber() * 1000).toString()
+          lastPayday: new Date(value[2].toNumber() * 1000).toString()
         }));
         
         this.setState({
@@ -99,7 +99,7 @@ class EmployeeList extends Component {
         address,
         salary,
         key:address,
-        lastPaidDay: new Date().toString()
+        lastPayday: new Date().toString()
       }
 
       this.setState({

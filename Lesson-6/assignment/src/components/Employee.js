@@ -10,6 +10,14 @@ class Employer extends Component {
   }
 
   componentDidMount() {
+    const updateInfo = (error, result) => {
+      if (!error) {
+        this.checkEmployee();
+      }
+    }
+    const {payroll} = this.props;
+     payroll.GetPaid(updateInfo);
+
     this.checkEmployee();
   }
 
