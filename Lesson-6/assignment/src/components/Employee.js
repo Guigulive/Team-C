@@ -23,14 +23,18 @@ class Employer extends Component {
 
   async checkEmployee() {
     const {payroll, account, web3} = this.props;
+    console.info(account)
+    let _this=this
     const self = await payroll.employees.call(account, {from:account})
-    let balance= await web3.eth.getBalance(account)
-    console.log(balance)
-    this.setState({
-      salary: web3.fromWei(self[1].toNumber()),
-      lastPaidDate: new Date(self[2].toNumber() * 1000).toString(),
-      balance:web3.fromWei(balance.toNumber())
-    });
+    web3.eth.getBalance(account,function (error,balance) {
+      console.log(balance)
+      _this.setState({
+        salary: web3.fromWei(self[1].toNumber()),
+        lastPaidDate: new Date(self[2].toNumber() * 1000).toString(),
+        balance:web3.fromWei(balance.toNumber())
+      });
+    })
+
 
   }
 

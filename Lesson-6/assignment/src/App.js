@@ -60,7 +60,6 @@ class App extends Component {
     this.state.web3.eth.getAccounts( async(error, accounts) => {
       this.setState({
         account: accounts[0],
-        account1: accounts[1],
       });
 		const instance = await Payroll.deployed()
 		this.setState({
@@ -87,7 +86,7 @@ class App extends Component {
       case 'employer':
         return <Employer account={account} payroll={payroll} web3={web3} />
       case 'employee':
-        return <Employee account={account1} payroll={payroll} web3={web3} />
+        return <Employee account={account} payroll={payroll} web3={web3} />
       default:
         return <Alert message="请选一个模式" type="info" showIcon />
     }
