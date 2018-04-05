@@ -78,6 +78,11 @@ contract payRoll is Ownable{
         employee.lastPayday = now;
     }
 
+//    function changePaymentAddress(address employeeId,address newemployeeId) onlyOwner employeeExist(employeeId){
+//        _partialPay(employeeId);
+//        employees[employeeId].id = newemployeeId;
+//    }
+    
     function changePaymentAddress(address oldAddress, address newAddress) onlyOwner hasEmployee(oldAddress) hasNoEmployee(newAddress) {
         Employee employee = employees[oldAddress];
         _partialPay(oldAddress);
