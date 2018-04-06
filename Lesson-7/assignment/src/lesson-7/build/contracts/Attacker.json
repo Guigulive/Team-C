@@ -1,0 +1,175 @@
+{
+  "contractName": "Attacker",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "observe",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x60606040523415600e57600080fd5b60848061001c6000396000f300606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806314fc78fc146044575b600080fd5b3415604e57600080fd5b60546056565b005b5600a165627a7a72305820681b34883ee509e95b4ea6289c9ea22a5d067c5346dbc527538f2f8c7ed23c7f0029",
+  "deployedBytecode": "0x606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806314fc78fc146044575b600080fd5b3415604e57600080fd5b60546056565b005b5600a165627a7a72305820681b34883ee509e95b4ea6289c9ea22a5d067c5346dbc527538f2f8c7ed23c7f0029",
+  "sourceMap": "26:52:0:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "26:52:0:-;;;;;;;;;;;;;;;;;;;;;;;;50:26;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.17;\n\ncontract Attacker {\n    function observe() {\n    }\n}\n",
+  "sourcePath": "/opt/src/lesson-7/contracts/Attacker.sol",
+  "ast": {
+    "absolutePath": "/opt/src/lesson-7/contracts/Attacker.sol",
+    "exportedSymbols": {
+      "Attacker": [
+        6
+      ]
+    },
+    "id": 7,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 6,
+        "linearizedBaseContracts": [
+          6
+        ],
+        "name": "Attacker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 4,
+              "nodeType": "Block",
+              "src": "69:7:0",
+              "statements": []
+            },
+            "id": 5,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "observe",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "66:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "69:0:0"
+            },
+            "scope": 6,
+            "src": "50:26:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 7,
+        "src": "26:52:0"
+      }
+    ],
+    "src": "0:79:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/opt/src/lesson-7/contracts/Attacker.sol",
+    "exportedSymbols": {
+      "Attacker": [
+        6
+      ]
+    },
+    "id": 7,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 6,
+        "linearizedBaseContracts": [
+          6
+        ],
+        "name": "Attacker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 4,
+              "nodeType": "Block",
+              "src": "69:7:0",
+              "statements": []
+            },
+            "id": 5,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "observe",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "66:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "69:0:0"
+            },
+            "scope": 6,
+            "src": "50:26:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 7,
+        "src": "26:52:0"
+      }
+    ],
+    "src": "0:79:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-04-04T10:12:05.988Z"
+}

@@ -53,9 +53,6 @@ class App extends Component {
         const Payroll = contract(PayrollContract)
         Payroll.setProvider(this.state.web3.currentProvider)
 
-        // Declaring this for later so we can chain functions on Payroll.
-        var PayrollInstance
-
         // Get accounts.
         this.state.web3.eth.getAccounts((error, accounts) => {
             this.setState({
@@ -63,7 +60,7 @@ class App extends Component {
                 employee: accounts[0],
             });
             Payroll.deployed().then((instance) => {
-                PayrollInstance = instance
+                // for debug
                 window.payroll = instance
                 this.setState({
                     payroll: instance

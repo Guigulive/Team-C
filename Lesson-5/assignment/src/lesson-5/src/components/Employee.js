@@ -14,8 +14,6 @@ class Employer extends Component {
                 lastPaidDate: new Date(ret[1].toNumber() * 1000).toString(),
                 balance: web3.fromWei(ret[2].toNumber()),
             }
-            console.log("checkEmployee");
-            console.log(info);
             this.setState(info);
         }).catch((error) => {
             console.log(error);
@@ -25,13 +23,11 @@ class Employer extends Component {
 
     getPaid = () => {
         const {payroll, account} = this.props;
-        payroll.getPaid.call({
+        payroll.getPaid({
             from: account,
         }).then((ret) => {
-            console.log("getPaid");
-            console.log(ret);
+            this.checkEmployee();
         }).catch((error) => {
-            console.log(error);
             message.error(error.message);
         });
     }
