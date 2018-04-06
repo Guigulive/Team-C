@@ -3,7 +3,8 @@ import PayrollContract from '../build/contracts/Payroll.json'
 import getWeb3 from './utils/getWeb3'
 
 import { Layout, Menu, Spin, Alert } from 'antd';
-
+import Accounts from './components/Accounts';
+import Common from './components/Common';
 import Employer from './components/Employer';
 import Employee from './components/Employee';
 
@@ -94,6 +95,10 @@ class App extends Component {
   }
 
   render() {
+    // const { selectedAccount,accounts, payroll, web3 } = this.state;
+    // if(!accounts){
+    //   return <div> Loading</div>
+    // }
     return (
       <Layout>
         <Header className="header">
